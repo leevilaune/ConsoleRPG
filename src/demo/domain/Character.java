@@ -6,4 +6,7 @@ public interface Character {
 	void heal();
 	void setHP(int hp);
 	int getHP();
+	void setName(String name);
+	String getName();
+	
 }

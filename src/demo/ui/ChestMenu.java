@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import demo.domain.ChestInventory;
+import demo.domain.Equipment;
 import demo.domain.Gear;
 import demo.domain.Inventory;
 import demo.domain.ItemIndex;
@@ -17,13 +18,15 @@ public class ChestMenu {
 	private ItemIndex index;
 	private Inventory inv;
 	private ChestInventory chestInv;
+	private Equipment equip;
 	
-	public ChestMenu(Scanner r, ItemIndex ii, Inventory i, ChestInventory ci) {
+	public ChestMenu(Scanner r, ItemIndex ii, Inventory i, ChestInventory ci, Equipment e) {
 		this.useful = new UsefulMethods();
 		this.r = r;
 		this.index = ii;
 		this.inv = i;
 		this.chestInv = ci;
+		this.equip = e;
 	}
 	public void start() {
 		
@@ -57,7 +60,15 @@ public class ChestMenu {
 			if(this.useful.isNumeric(parts[1])&&Integer.parseInt(parts[1]) >= 0&&parts.length == 2) {
 				Gear g = chestInv.open(Integer.parseInt(parts[1]));
 				this.index.setFound(g.getName());
-				this.inv.addItem(g);
+				if(this.equip.checkIfEquipped(g.getName())) {
+					this.equip.upgrade(g.getID());
+				}else if(inv.checkIfInInventory(g)) {
+					inv.boost(g.getName());
+					System.out.println("boosted");
+				}
+				else {
+					inv.addItem(g);
+				}
 				System.out.println("  You got: " + g);
 			}else {
 				System.out.println("Invalid Number");
@@ -67,12 +78,11 @@ public class ChestMenu {
 		}
 	}
 	private void openAll() {
-		List<Gear> opened = chestInv.openAll();
+		List<Gear> opened = this.chestInv.openAll();
 		for(Gear g: opened) {
 			this.index.setFound(g.getName());
 			System.out.println("  You got: " + g);
 		}
-		this.inv.addAllItems(opened);
 	}
 	public void add(String command) {
 		String[] parts = command.split(" ", 3);
@@ -93,12 +103,15 @@ public class ChestMenu {
 			if(parts[1].equals("Basic")) {
 				this.chestInv.add(new BasicChest());
 			}
+			if(parts[1].equals("Flame")) {
+				this.chestInv.add(new FlameSwordChest());
+			}
 		}
 	}
 	private void printCommands() {
 		System.out.println("--Chest Menu Commands--");
-		System.out.println("  close	 - closes chest menu");
-		System.out.println("  list   - list commands");
+		System.out.println("  close	      - closes chest menu");
+		System.out.println("  list        - list commands");
 		System.out.println("  list chests - list chest inventory");
 		System.out.println("  open [nro]  - opens chest");	
 		System.out.println("  open all    - opens all your chests");

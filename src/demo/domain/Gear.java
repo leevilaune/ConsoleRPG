@@ -8,8 +8,13 @@ public class Gear extends Item{
 	private int power;
 	private int level;
 	private boolean isFound;
+	private boolean isUpgraded;
+	private boolean isMaxLevel;
 	private Element element;
 	private Stats stats;
+	private int baseAttack;
+	private int baseHP;
+	private int basePower;
 	private int attackBoost;
 	private int hpBoost;
 	
@@ -20,6 +25,13 @@ public class Gear extends Item{
 		this.level = 1;
 		this.element = element;
 		this.isFound = false;
+		this.isUpgraded = false;
+		this.isMaxLevel = false;
+		
+		this.baseAttack = stats.getAttack();
+		this.baseHP = stats.getHP();
+		this.basePower = power;
+		
 		this.attackBoost = stats.getAttack();
 		this.hpBoost = stats.getHP();
 	}
@@ -65,22 +77,69 @@ public class Gear extends Item{
 	public void setID(String id) {
 		this.id = id;
 	}
+	public String getSetID() {
+		String[] parts = this.name.split(" ",3);
+		if(parts.length == 3) {
+			return parts[0] + " " + parts[1];
+		}
+		return parts[0];
+	}
 	public void setFound(boolean b) {
 		this.isFound = b;
 	}
 	public boolean isFound() {
 		return this.isFound;
 	}
-	public void upgrade() {
-		this.level++;
-		this.power += 10;
+	public void setUpgraded(boolean b) {
+		this.isUpgraded = b;
 	}
+	public boolean isUpgraded() {
+		return this.isUpgraded;
+	}
+	public void setMaxLevel(boolean b) {
+		this.isMaxLevel = b;
+	}
+	public boolean isMaxLevel() {
+		return this.isMaxLevel;
+	}
+	public void upgrade() {
+		if(this.rarity == Rarity.COMMON && this.level < 20) {
+			this.level++;
+			this.power += this.basePower;
+			this.attackBoost += this.baseAttack;
+			this.hpBoost += this.baseHP;
+			this.stats.setAttack(this.attackBoost);
+			this.stats.setHP(this.hpBoost);
+			this.isUpgraded = true;
+		}else if(this.rarity == Rarity.RARE && this.level < 50) {
+			this.level++;
+			this.power += this.basePower;
+			this.attackBoost += this.baseAttack;
+			this.hpBoost += this.baseHP;
+			this.stats.setAttack(this.attackBoost);
+			this.stats.setHP(this.hpBoost);
+			this.isUpgraded = true;
+		}else if(this.rarity == Rarity.LEGENDARY && this.level < 100) {
+			this.level++;
+			this.power += this.basePower;
+			this.attackBoost += this.baseAttack;
+			this.hpBoost += this.baseHP;
+			this.stats.setAttack(this.attackBoost);
+			this.stats.setHP(this.hpBoost);
+			this.isUpgraded = true;
+		}
+		else {
+			this.isMaxLevel = true;
+			System.out.println("Gear is at max level");
+		}
+	}
+	
 	public void upgrade(int times) {
 		this.level += times;
 		this.power += (10 * times);
 	}
 	public void printDetails() {
-		System.out.println("  " + this.toString());
+		System.out.println("  " + this.toString() + ", " + this.level);
 		System.out.print("    Element: " + this.element);
 		System.out.println(this.stats);
 		

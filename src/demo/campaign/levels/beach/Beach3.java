@@ -1,31 +1,31 @@
-package demo.campaign.levels.forest;
+package demo.campaign.levels.beach;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import demo.combat.bots.EarthSpirit;
-import demo.combat.bots.Goblin;
+import demo.combat.bots.Siren;
+import demo.combat.bots.WaterSpirit;
 import demo.domain.Bot;
 import demo.domain.DropController;
 import demo.domain.Level;
 import demo.domain.Player;
 import demo.domain.chests.BasicChest;
-import demo.domain.items.grassset.GrassBoots;
+import demo.domain.items.aquaticset.AquaticHelmet;
 
-public class Forest2 extends Level{
+public class Beach3 extends Level {
 	
-	private DropController dropCtrl;
+private DropController dropCtrl;
 	
-	public Forest2(Player p, Scanner r, DropController dc) {
-		super(p, r, setBots(), "The Forest - 2");
+	public Beach3(Player p, Scanner r, DropController dc) {
+		super(p, r, setBots(), "The Beach - 3");
 		this.dropCtrl = dc;
 	}
 	private static List<Bot> setBots(){
 		List<Bot> bots = new ArrayList<>();
-		bots.add(new EarthSpirit(1, 2));
-		bots.add(new EarthSpirit(2,2));
-		bots.add(new Goblin(3,2));
+		bots.add(new Siren(1, 8));
+		bots.add(new WaterSpirit(2, 8));
+		bots.add(new WaterSpirit(3,8));
 		return bots;
 	}
 	@Override
@@ -33,7 +33,7 @@ public class Forest2 extends Level{
 		super.start();
 		if(super.isCompleted()) {
 			dropCtrl.addChest(new BasicChest());
-			dropCtrl.addGear(new GrassBoots());
+			dropCtrl.addGear(new AquaticHelmet());
 		}
 	}
 }

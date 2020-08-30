@@ -9,8 +9,8 @@ public class Stats {
 		this.attack = atk;
 		this.hp = hp;
 	}
-	public void setAttack(int hp) {
-		this.hp = hp;
+	public void setAttack(int atk) {
+		this.attack = atk;
 	}
 	public int getAttack() {
 		return this.attack;

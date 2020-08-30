@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import demo.combat.bots.GenericBot;
+import demo.combat.bots.Goblin;
 import demo.combat.bots.TargetDummy;
 import demo.domain.Bot;
 import demo.domain.Player;
@@ -26,7 +26,7 @@ public class CombatTestScene {
 	}
 	private void setBots() {
 		for(int i = 1; i <= 3; i++) {
-			this.bots.add(new GenericBot(i));
+			this.bots.add(new Goblin(1,1));
 		}
 	}
 	public void start() {

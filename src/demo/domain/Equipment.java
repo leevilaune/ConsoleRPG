@@ -10,13 +10,17 @@ public class Equipment {
 	private Slot pantsSlot;
 	private Slot bootsSlot;
 	
-	public Equipment() {
+	private ItemIndex index;
+	
+	public Equipment(ItemIndex ii) {
 		
 		this.weaponSlot = new Slot("Weapon");
 		this.helmetSlot = new Slot("Helmet");
 		this.chestplateSlot = new Slot("Chestplate");
 		this.pantsSlot = new Slot("Pants");
 		this.bootsSlot = new Slot("Boots");
+
+		this.index = ii;
 		
 		this.setInitialEquipment();
 		
@@ -27,6 +31,12 @@ public class Equipment {
 		this.helmetSlot.setGear(new BasicHelmet());
 		this.pantsSlot.setGear(new BasicPants());
 		this.bootsSlot.setGear(new BasicBoots());
+		
+		this.index.setFound("Basic Sword");
+		this.index.setFound("Basic Helmet");
+		this.index.setFound("Basic Plate");
+		this.index.setFound("Basic Pants");
+		this.index.setFound("Basic Boots");
 	}
 	public int getTotalPower() {
 		int totPower = 0;
@@ -35,7 +45,7 @@ public class Equipment {
 		totPower += this.chestplateSlot.getPower();
 		totPower += this.pantsSlot.getPower();
 		totPower += this.bootsSlot.getPower();
-		
+
 		return totPower;
 	}
 	public int getHPBoost() {
@@ -45,6 +55,7 @@ public class Equipment {
 		hpBoost += this.chestplateSlot.getHPBoost();
 		hpBoost += this.pantsSlot.getHPBoost();
 		hpBoost += this.bootsSlot.getHPBoost();
+		
 		return hpBoost;
 	}
 	public int getAttackBoost() {
@@ -54,6 +65,7 @@ public class Equipment {
 		attackBoost += this.chestplateSlot.getAttackBoost();
 		attackBoost += this.pantsSlot.getAttackBoost();
 		attackBoost += this.bootsSlot.getAttackBoost();
+
 		return attackBoost;
 	}
 	public void setWeapon(Gear g) {
@@ -106,13 +118,60 @@ public class Equipment {
 	public Gear getBoots() {
 		return this.bootsSlot.getGear();
 	}
+	public void upgrade(String id) {
+		if(id.equals("Weapon")) {
+			weaponSlot.getGear().upgrade();
+		}
+		if(id.equals("Helmet")) {
+			helmetSlot.getGear().upgrade();
+		}
+		if(id.equals("Chestplate")) {
+			chestplateSlot.getGear().upgrade();
+		}
+		if(id.equals("Pants")) {
+			pantsSlot.getGear().upgrade();
+		}
+		if(id.equals("Boots")) {
+			bootsSlot.getGear().upgrade();
+		}
+	}
+	public boolean checkIfEquipped(String name) {
+		if(name.equals(weaponSlot.getGear().getName())) {
+			return true;
+		}
+		if(name.equals(helmetSlot.getGear().getName())) {
+			return true;
+		}
+		if(name.equals(chestplateSlot.getGear().getName())) {
+			return true;
+		}
+		if(name.equals(pantsSlot.getGear().getName())) {
+			return true;
+		}
+		if(name.equals(bootsSlot.getGear().getName())) {
+			return true;
+		}
+		return false;
+	}
+	/*
+	public boolean fullSetEquip() {
+		String setID = weaponSlot.getGear().getSetID();
+		for(Slot s: this.slots) {
+			System.out.println(s.getGear().getSetID());
+			if(!s.getGear().getSetID().equals(setID)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	*/
 	public void printEquipment() {
 		System.out.println("--Equipment--");
-		System.out.println(this.weaponSlot);
-		System.out.println(this.helmetSlot);
-		System.out.println(this.chestplateSlot);
-		System.out.println(this.pantsSlot);
-		System.out.println(this.bootsSlot);
+		System.out.println(this.weaponSlot + ", " + this.weaponSlot.getGear().getLevel());
+		System.out.println(this.helmetSlot + ", " + this.helmetSlot.getGear().getLevel() );
+		System.out.println(this.chestplateSlot + ", " + this.chestplateSlot.getGear().getLevel());
+		System.out.println(this.pantsSlot + ", " + this.pantsSlot.getGear().getLevel());
+		System.out.println(this.bootsSlot + ", " + this.bootsSlot.getGear().getLevel());
 		System.out.println("Power:  " + this.getTotalPower());
 		System.out.println("Attack: " + this.getAttackBoost());
 		System.out.println("HP:     " + this.getHPBoost());

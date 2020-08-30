@@ -27,15 +27,15 @@ public class Menu {
 	
 	public Menu() {
 		this.r = new Scanner(System.in);
-		this.equip = new Equipment();
 		this.index = new ItemIndex();
+		this.equip = new Equipment(index);
 		this.indMenu = new IndexMenu(r, index);
 		this.inv = new Inventory(index);
-		this.chestInv = new ChestInventory();
+		this.chestInv = new ChestInventory(inv, equip);
 		this.invMenu = new InventoryMenu(inv, index, equip, r);
-		this.chestMenu = new ChestMenu(r, index, inv, chestInv);
+		this.chestMenu = new ChestMenu(r, index, inv, chestInv, equip);
 		this.player = new Player(this.equip);
-		this.dc = new DropController(inv, chestInv);
+		this.dc = new DropController(player, inv, chestInv);
 		this.campMenu = new CampaignMenu(r, player, dc);
 	}
 	public void start() {

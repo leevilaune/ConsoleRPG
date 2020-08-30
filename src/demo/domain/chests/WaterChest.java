@@ -16,7 +16,7 @@ public class WaterChest extends Chest{
 
 	public WaterChest() {
 		//giving chest name to super class
-		super("Water Chest",0, 1, 0.2);
+		super("Water Chest",0, 1, 0.3);
 		//initialising rare drop pool list
 		this.dropPoolRare = new ArrayList<>();
 		//initialising legendary drop pool list

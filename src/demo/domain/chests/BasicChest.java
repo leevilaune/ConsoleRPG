@@ -21,7 +21,7 @@ public class BasicChest extends Chest{
 	private List<Gear> dropPoolLegendaries;
 
 	public BasicChest() {
-		super("Basic Chest", 1, 0.4, 0.01);
+		super("Basic Chest", 1, 0.4, 0.1);
 		this.dropPoolCommons = new ArrayList<>();
 		this.dropPoolRares = new ArrayList<>();
 		this.dropPoolLegendaries = new ArrayList<>();

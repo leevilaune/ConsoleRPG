@@ -14,12 +14,12 @@ public class Level {
 	private Scanner scanner;
 	
 	private List<Bot> bots;
-	private List<Bot> firstWave;
+	private List<Bot> enemies;
 	
 	public Level(Player p, Scanner r, List<Bot> fw, String name) {
 		this.player = p;
 		this.bots = fw;
-		this.firstWave = bots;
+		this.enemies = bots;
 		this.scanner = r;
 		this.isLocked = true;
 		this.isCompleted = false;
@@ -27,12 +27,12 @@ public class Level {
 	}
 	public void start() {
 		player.resetHP();
-		this.firstWave = bots;
+		this.enemies = bots;
 		this.printCommands();
 		while(true) {
-			if(this.firstWave.size() == 0) {
+			if(this.enemies.size() == 0) {
 				System.out.println("Level Cleared!");
-				this.firstWave.addAll(bots);
+				this.enemies.addAll(bots);
 				this.player.resetHP();
 				this.isCompleted = true;
 				break;
@@ -79,19 +79,21 @@ public class Level {
 	}
 	private void attack() {
 		Bot b = getFirstBot();
-		player.attack(b);
-		System.out.println(b.getHP());
-		
+		if(!b.didDodge()) {
+			player.attack(b);
+		}else {
+			System.out.println("Dodged");
+		}
 	}
 	private void listBots() {
-		for(Bot b: this.firstWave) {
+		for(Bot b: this.enemies) {
 			System.out.println(b);
 		}
 	}
 	
 	private void cycleBots() {
 		ArrayList<Bot> dead = new ArrayList<>();
-		for(Bot b: this.firstWave) {
+		for(Bot b: this.enemies) {
 			if(b.getHP() < 0) {
 				System.out.println(b.getName() + " Killed");
 				dead.add(b);
@@ -100,19 +102,22 @@ public class Level {
 				System.out.println(b);
 			}
 		}
-		this.firstWave.removeAll(dead);
+		this.enemies.removeAll(dead);
 	}
 	
 	private Bot getByName(String name) {
-		for(Bot b: this.firstWave) {
+		for(Bot b: this.enemies) {
 			if(b.getName().equals(name)) {
 				return b;
 			}
 		}
 		return null;
 	}
+	public void setEnemies(List<Bot> bots) {
+		this.enemies = bots;
+	}
 	private Bot getFirstBot() {
-		return this.firstWave.get(0);
+		return this.enemies.get(0);
 	}
 	public void setCompleted(boolean b) {
 		this.isCompleted = b;

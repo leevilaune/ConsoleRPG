@@ -32,16 +32,18 @@ public class Forest1 extends Level {
 	}
 	@Override
 	public void start() {
-		System.out.println("\nNarrator:");
-		System.out.println("  Welcome to The Plane of Elements, world of elements. ");
-		System.out.println("  You arrived just in time, our resistance against The Lunar Circle is dying,");
-		System.out.println("  and we need a strong hero to save The Plane of Elements.");
-		System.out.println("  We are trying to get through The Forest and we need your help.\n");
+		if(!super.isCompleted()) {
+			System.out.println("\nNarrator:");
+			System.out.println("  Welcome to The Plane of Elements, world of elements. ");
+			System.out.println("  You arrived just in time, our resistance against The Lunar Circle is dying,");
+			System.out.println("  and we need a strong hero to save The Plane of Elements.");
+			System.out.println("  We are trying to get through The Forest and we need your help.\n");
+		}
+		super.setEnemies(setBots());
 		super.start();
 		if(super.isCompleted()) {
 			dropCtrl.addChest(new BasicChest());
 			dropCtrl.addGear(new GrassBlade());
-			System.out.println("You got Basic Chest, Grass Blade");
 		}
 	}
 }

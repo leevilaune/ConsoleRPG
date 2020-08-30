@@ -1,16 +1,23 @@
 package demo.ai;
 
 import demo.domain.Move;
+
+import java.util.Random;
+
 import demo.combat.moves.*;
 
 public class BotAI {
 	
+	private Random random;
+	private double dodgeChange;
 	private int attackPower;
 	private int healPower;
 	private Heal heal;
 	private Attack attack;
 	
-	public BotAI(int attackPower, int healPower) {
+	public BotAI(int attackPower, int healPower, double dodgeChange) {
+		this.random = new Random();
+		this.dodgeChange = dodgeChange;
 		this.attackPower = attackPower;
 		this.healPower = healPower;
 		this.attack = new Attack(this.attackPower, this.healPower);
@@ -18,13 +25,16 @@ public class BotAI {
 	}
 	//method defininig which move to use
 	public Move defineMove(int fullHP, int hp) {
-		double hpPercent = hp / fullHP;
 		if(hp < (fullHP / 4)) {
-			System.out.println("healed");
 			return this.heal;
 		}
-		System.out.println(hpPercent);
 		return this.attack;
+	}
+	public boolean didDodge() {
+		if(random.nextDouble() < this.dodgeChange) {
+			return true;
+		}
+		return false;
 	}
 	public Heal getHeal() {
 		return this.heal;

@@ -41,6 +41,11 @@ public class InventoryMenu {
 				equip(command);
 			}else if(command.equals("list equip")) {
 				this.equip.printEquipment();
+			}else if(command.contains("boost")) {
+				boost(command);
+				System.out.println("Invalid Command");
+			}else if(command.contains("details")) {
+				details(command);
 			}
 			else if(command.contains("add")) {
 				add(command);
@@ -54,7 +59,7 @@ public class InventoryMenu {
 	private void equip(String command) {
 		String[] parts = command.split(" ", 2);
 		if(parts.length == 2) {
-			Gear g = index.getGear(parts[1]);
+			Gear g = inv.getItemByName(parts[1]);
 			if(inv.checkIfInInventory(g)) {
 				if(g.getID().equals("Weapon")) {
 					this.inv.addItem(this.equip.getWeapon());
@@ -84,10 +89,22 @@ public class InventoryMenu {
 			}
 		}
 	}
+	private void boost(String command) {
+		String[] parts = command.split(" ", 2);
+		if(parts.length == 2) {
+			
+			inv.boost(parts[1]);
+		}
+	}
+	private void details(String command) {
+		String[] parts = command.split(" ", 2);
+		inv.getItemByName(parts[1]).printDetails();
+	}
 	private void add(String command) {
 		String[] parts = command.split(" ", 2);
 		if(parts.length > 1) {
-			inv.addItem(index.getGear(parts[1]));
+			Gear g = index.getGear(parts[1]);
+			inv.addItem(g);
 			index.setFound(parts[1]);
 		}else {
 			System.out.println("  You need to use 'add [item name]'");
@@ -108,5 +125,6 @@ public class InventoryMenu {
 		System.out.println("  list inv 	- lists content of your inventory");
 		System.out.println("  list equip    - list equipment");
 		System.out.println("  equip [item]	- equips item to slot");
+		//System.out.println("  boost [item]  - boost item");
 	}
 }

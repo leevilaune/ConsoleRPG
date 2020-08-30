@@ -33,7 +33,6 @@ private DropController dropCtrl;
 		if(super.isCompleted()) {
 			dropCtrl.addChest(new BasicChest());
 			dropCtrl.addGear(new GrassPants());
-			System.out.println("You got Basic Chest, Grass Pants");
 		}
 	}
 }

@@ -16,7 +16,7 @@ public class FireChest extends Chest{
 
 	public FireChest() {
 		//giving chest name to super class
-		super("Fire Chest",0, 1, 0.2);
+		super("Fire Chest",0, 1, 0.3);
 		//initialising rare drop pool list
 		this.dropPoolRare = new ArrayList<>();
 		//initialising legendary drop pool list

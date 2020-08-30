@@ -19,7 +19,7 @@ public class Bot implements Character{
 		this.healPower = (healPower * level) / 4;
 		this.fullHP = (fullHP * level) / 2;
 		this.hp = this.fullHP;
-		this.ai = new BotAI(this.attackPower, this.healPower);
+		this.ai = new BotAI(this.attackPower, this.healPower, 0.1);
 	}
 
 	public void makeMove(Player p) {
@@ -30,8 +30,8 @@ public class Bot implements Character{
 			m.execute(this);
 		}
 	}
-	public String getName() {
-		return this.name;
+	public boolean didDodge() {
+		return this.ai.didDodge();
 	}
 	public void setHP(int hp) {
 		this.hp = hp;
@@ -54,10 +54,16 @@ public class Bot implements Character{
 	public void heal() {
 		
 	}
-	
 	@Override
 	public int getHP() {
 		return this.hp;
+	}
+	@Override 
+	public void setName(String name) {
+		
+	}
+	public String getName() {
+		return this.name;
 	}
 	@Override
 	public String toString() {

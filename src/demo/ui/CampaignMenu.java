@@ -3,7 +3,7 @@ package demo.ui;
 import java.util.Scanner;
 
 import demo.campaign.Campaign;
-import demo.domain.ChestInventory;
+
 import demo.domain.DropController;
 import demo.domain.Player;
 
@@ -11,13 +11,9 @@ public class CampaignMenu {
 	
 	private Campaign campaign;
 	private Scanner scanner;
-	private DropController dropCtrl;
-	private Player player;
-	
+
 	public CampaignMenu(Scanner r, Player p, DropController dc) {
 		this.scanner = r;
-		this.player = p;
-		this.dropCtrl = dc;
 		this.campaign = new Campaign(p, r, dc);
 	}
 	public void start() {
@@ -36,7 +32,7 @@ public class CampaignMenu {
 			}
 		}
 	}
-	public void printCommands() {
+	private void printCommands() {
 		System.out.println("--Campaign Commands--");
 		System.out.println("  close         - closes campaign");
 		System.out.println("  list          - lists commands");
@@ -48,5 +44,8 @@ public class CampaignMenu {
 		if(parts.length == 2) {
 			campaign.start(parts[1]);
 		}
+	}
+	public boolean isCompleted(String name) {
+		return campaign.isLevelCompleted(name);
 	}
 }

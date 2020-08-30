@@ -5,9 +5,13 @@ import java.util.*;
 public class ChestInventory {
 	
 	private List<Chest> chests;
+	private Inventory inv;
+	private Equipment equip;
 	
-	public ChestInventory() {
+	public ChestInventory(Inventory i, Equipment e) {
 		this.chests = new ArrayList<>();
+		this.inv = i;
+		this.equip = e;
 	}
 	public void add(Chest c) {
 		this.chests.add(c);
@@ -26,7 +30,18 @@ public class ChestInventory {
 		List<Gear> openedGear = new ArrayList<>();
 		List<Chest> opened = new ArrayList<>();
  		for(Chest c: this.chests) {
-			openedGear.add(c.open());
+ 			Gear g = c.open();
+ 			if(this.equip.checkIfEquipped(g.getName())) {
+				this.equip.upgrade(g.getID());
+			}else if(inv.checkIfInInventory(g)) {
+				inv.boost(g.getName());
+				System.out.println("boosted");
+			}
+			else {
+				openedGear.add(g);
+				inv.addItem(g);
+				System.out.println("  You got: " + g);
+			}
 			opened.add(c);
 		}
  		this.chests.removeAll(opened);

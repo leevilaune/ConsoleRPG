@@ -8,7 +8,7 @@ import demo.domain.enums.Rarity;
 public class AdventurerSword extends Gear{
 	
 	public AdventurerSword() {
-		super("Weapon", "Adventurer Sword", 20, Rarity.COMMON, Element.NONELEMENTAL, new Stats(20,20));
+		super("Weapon", "Basic Sword", 20, Rarity.COMMON, Element.NONELEMENTAL, new Stats(20,20));
 	}
 	
 }

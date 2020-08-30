@@ -4,8 +4,6 @@ import java.util.*;
 
 import demo.domain.Chest;
 import demo.domain.Gear;
-import demo.domain.items.emberset.*;
-import demo.domain.items.flameset.*;
 import demo.domain.items.grassset.GrassBlade;
 import demo.domain.items.grassset.GrassBoots;
 import demo.domain.items.grassset.GrassChestplate;
@@ -26,7 +24,7 @@ public class EarthChest extends Chest{
 
 	public EarthChest() {
 		//giving chest name to super class
-		super("Earth Chest",0, 1, 0.2);
+		super("Earth Chest",0, 1, 0.3);
 		//initialising rare drop pool list
 		this.dropPoolRare = new ArrayList<>();
 		//initialising legendary drop pool list

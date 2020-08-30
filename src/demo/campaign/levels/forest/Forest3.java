@@ -23,9 +23,9 @@ public class Forest3 extends Level {
 	}
 	private static List<Bot> setBots(){
 		List<Bot> bots = new ArrayList<>();
-		bots.add(new Goblin(1, 4));
-		bots.add(new EarthSpirit(2,4));
-		bots.add(new EarthSpirit(3,4));
+		bots.add(new Goblin(1, 3));
+		bots.add(new EarthSpirit(2,3));
+		bots.add(new EarthSpirit(3,3));
 		return bots;
 	}
 	@Override
@@ -34,7 +34,6 @@ public class Forest3 extends Level {
 		if(super.isCompleted()) {
 			dropCtrl.addChest(new BasicChest());
 			dropCtrl.addGear(new GrassCrown());
-			System.out.println("You got Basic Chest, Grass Crown");
 		}
 	}
 }
