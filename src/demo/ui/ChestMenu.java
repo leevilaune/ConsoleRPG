@@ -64,7 +64,7 @@ public class ChestMenu {
 					this.equip.upgrade(g.getID());
 				}else if(inv.checkIfInInventory(g)) {
 					inv.boost(g.getName());
-					System.out.println("boosted");
+					System.out.println("Boosted " + g);
 				}
 				else {
 					inv.addItem(g);
@@ -81,7 +81,6 @@ public class ChestMenu {
 		List<Gear> opened = this.chestInv.openAll();
 		for(Gear g: opened) {
 			this.index.setFound(g.getName());
-			System.out.println("  You got: " + g);
 		}
 	}
 	public void add(String command) {

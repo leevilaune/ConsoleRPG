@@ -31,10 +31,10 @@ public class Mistral2 extends Level {
 	}
 	@Override
 	public void start() {
+		super.setEnemies(setBots());
 		if(!super.isCompleted()) {
 			//Set story here
 		}
-		super.setEnemies(setBots());
 		super.start();
 		if(super.isCompleted()) {
 			dropCtrl.addChest(new BasicChest());

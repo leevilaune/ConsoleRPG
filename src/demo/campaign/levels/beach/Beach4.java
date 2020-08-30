@@ -29,6 +29,7 @@ public class Beach4 extends Level{
 	}
 	@Override
 	public void start() {
+		super.setEnemies(setBots());
 		super.start();
 		if(super.isCompleted()) {
 			dropCtrl.addChest(new BasicChest());

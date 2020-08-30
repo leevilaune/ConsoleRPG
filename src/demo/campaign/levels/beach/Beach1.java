@@ -30,11 +30,17 @@ public class Beach1 extends Level{
 	}
 	@Override
 	public void start() {
+		super.setEnemies(setBots());
+		if(!super.isCompleted()) {
+			System.out.println("\nNarrator: ");
+			System.out.println("  Welcome to The Beaches of The Great Ocean, a place where nasty");
+			System.out.println("  sea creatures live. Like Sirens and Water Spirits.");
+			System.out.println("  You need to fight your way through The Beach.\n");
+		}
 		super.start();
 		if(super.isCompleted()) {
 			dropCtrl.addChest(new BasicChest());
 			dropCtrl.addGear(new AquaticSword());
-			System.out.println("You got Basic Chest, Aquatic Sword");
 		}
 	}
 }

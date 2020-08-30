@@ -26,6 +26,7 @@ public class Level {
 		this.name = name;
 	}
 	public void start() {
+		player.updateStats();
 		player.resetHP();
 		this.enemies = bots;
 		this.printCommands();
@@ -114,7 +115,7 @@ public class Level {
 		return null;
 	}
 	public void setEnemies(List<Bot> bots) {
-		this.enemies = bots;
+		this.bots = bots;
 	}
 	private Bot getFirstBot() {
 		return this.enemies.get(0);

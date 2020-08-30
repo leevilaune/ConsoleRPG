@@ -37,8 +37,6 @@ public class Player implements Character {
 	}
 	@Override
 	public void attack(Character c) {
-		this.updateStats();
-		this.attackPower = equip.getAttackBoost();
 		System.out.println("  Damage dealt " + this.attackPower + " to " + c.getName());
 		c.setHP(c.getHP()-this.attackPower);
 	}
@@ -63,7 +61,6 @@ public class Player implements Character {
 	public void updateStats() {
 		this.attackPower = equip.getAttackBoost();
 		this.maxHP += equip.getHPBoost();
-		this.resetHP();
 	}
 	public void resetHP() {
 		this.hp = maxHP;

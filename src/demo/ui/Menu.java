@@ -35,7 +35,7 @@ public class Menu {
 		this.invMenu = new InventoryMenu(inv, index, equip, r);
 		this.chestMenu = new ChestMenu(r, index, inv, chestInv, equip);
 		this.player = new Player(this.equip);
-		this.dc = new DropController(player, inv, chestInv);
+		this.dc = new DropController(player, inv, chestInv, equip);
 		this.campMenu = new CampaignMenu(r, player, dc);
 	}
 	public void start() {

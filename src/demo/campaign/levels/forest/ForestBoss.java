@@ -29,6 +29,7 @@ public class ForestBoss extends Level{
 	}
 	@Override
 	public void start() {
+		super.setEnemies(setBots());
 		super.start();
 		if(super.isCompleted()) {
 			System.out.println("\nNarrator:");

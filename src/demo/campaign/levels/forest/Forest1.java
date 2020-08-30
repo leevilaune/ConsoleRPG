@@ -8,7 +8,6 @@ import demo.combat.bots.EarthSpirit;
 import demo.combat.bots.Goblin;
 import demo.domain.Bot;
 import demo.domain.DropController;
-import demo.domain.Gear;
 import demo.domain.Level;
 import demo.domain.Player;
 import demo.domain.chests.BasicChest;
@@ -32,6 +31,7 @@ public class Forest1 extends Level {
 	}
 	@Override
 	public void start() {
+		super.setEnemies(setBots());
 		if(!super.isCompleted()) {
 			System.out.println("\nNarrator:");
 			System.out.println("  Welcome to The Plane of Elements, world of elements. ");
@@ -39,7 +39,6 @@ public class Forest1 extends Level {
 			System.out.println("  and we need a strong hero to save The Plane of Elements.");
 			System.out.println("  We are trying to get through The Forest and we need your help.\n");
 		}
-		super.setEnemies(setBots());
 		super.start();
 		if(super.isCompleted()) {
 			dropCtrl.addChest(new BasicChest());

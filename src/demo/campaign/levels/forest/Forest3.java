@@ -30,6 +30,7 @@ public class Forest3 extends Level {
 	}
 	@Override
 	public void start() {
+		super.setEnemies(setBots());
 		super.start();
 		if(super.isCompleted()) {
 			dropCtrl.addChest(new BasicChest());

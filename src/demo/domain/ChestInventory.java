@@ -35,7 +35,7 @@ public class ChestInventory {
 				this.equip.upgrade(g.getID());
 			}else if(inv.checkIfInInventory(g)) {
 				inv.boost(g.getName());
-				System.out.println("boosted");
+				System.out.println("  Boosted " + g);
 			}
 			else {
 				openedGear.add(g);
