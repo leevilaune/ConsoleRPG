@@ -1,4 +1,4 @@
-package demo.combat.bots;
+package demo.combat.bots.water;
 
 import demo.domain.Bot;
 

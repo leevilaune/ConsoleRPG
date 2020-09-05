@@ -1,4 +1,4 @@
-package demo.combat.bots;
+package demo.combat.bots.earth;
 
 import demo.domain.Bot;
 

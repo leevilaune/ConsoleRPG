@@ -12,14 +12,14 @@ import demo.domain.Player;
 import demo.domain.chests.EarthChest;
 import demo.domain.items.flameset.FlameSword;
 import demo.domain.items.grassset.GrassChestplate;
+import demo.domain.items.leafset.LeafDaggers;
 
 public class ForestBoss extends Level{
 	
 	private DropController dropCtrl;
 	
 	public ForestBoss(Player p, Scanner r, DropController dc) {
-		super(p, r, setBots(), "The Forest Boss");
-		super.setLocked(false);
+		super(p, r, setBots(), "Forest Boss");
 		this.dropCtrl = dc;
 	}
 	private static List<Bot> setBots(){
@@ -38,12 +38,12 @@ public class ForestBoss extends Level{
 			System.out.println("  guiding you through the game.");
 			System.out.println("\nSabrael:");
 			System.out.println("  Hi I am Sabrael.");
-			System.out.println("  Here take this. It is a Legendary Flame Sword, it will be useful when fighting Earth ");
+			System.out.println("  Here take this. It is a Legendary Leaf Daggers, it will be useful when fighting Earth ");
 			System.out.println("  monsters like those goblins. You can equip it in Inventory Menu by ");
-			System.out.println("  typing  “equip Flame Sword”.\n");
+			System.out.println("  typing  “equip Leaf Daggers”.\n");
 			dropCtrl.addChest(new EarthChest());
 			dropCtrl.addGear(new GrassChestplate());
-			dropCtrl.addGear(new FlameSword());
+			dropCtrl.addGear(new LeafDaggers());
 		}
 	}
 }

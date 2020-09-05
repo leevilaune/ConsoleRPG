@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import demo.combat.bots.Siren;
-import demo.combat.bots.WaterSpirit;
+import demo.combat.bots.water.Siren;
+import demo.combat.bots.water.WaterSpirit;
 import demo.domain.Bot;
 import demo.domain.DropController;
 import demo.domain.Level;

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import demo.combat.bots.EarthSpirit;
-import demo.combat.bots.Goblin;
+import demo.combat.bots.earth.EarthSpirit;
+import demo.combat.bots.earth.Goblin;
 import demo.domain.Bot;
 import demo.domain.DropController;
 import demo.domain.Level;
@@ -18,7 +18,7 @@ public class Forest2 extends Level{
 	private DropController dropCtrl;
 	
 	public Forest2(Player p, Scanner r, DropController dc) {
-		super(p, r, setBots(), "The Forest - 2");
+		super(p, r, setBots(), "Forest - 2");
 		this.dropCtrl = dc;
 	}
 	private static List<Bot> setBots(){

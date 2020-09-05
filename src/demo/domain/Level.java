@@ -138,6 +138,8 @@ public class Level {
 	public String getName() {
 		return this.name;
 	}
+	
+	@Override
 	public String toString() {
 		return this.name + "\n  Locked:    " + this.isLocked + "\n  Completed: " + this.isCompleted;
 	}

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import demo.combat.bots.Goblin;
 import demo.combat.bots.TargetDummy;
+import demo.combat.bots.earth.Goblin;
 import demo.domain.Bot;
 import demo.domain.Player;
 

@@ -7,53 +7,58 @@ import java.util.Scanner;
 import demo.campaign.levels.beach.*;
 import demo.campaign.levels.forest.*;
 import demo.campaign.levels.mistral.*;
+import demo.campaign.storylines.Earth;
 import demo.domain.DropController;
 import demo.domain.Level;
 import demo.domain.Player;
+import demo.domain.Storyline;
 
 public class Campaign {
 	
-	private List<Level> levels;
+	private List<Storyline> storylines;
 	private Player p;
 	private Scanner r;
 	private DropController dc;
 	
 	public Campaign(Player p, Scanner r, DropController dc) {
-		this.levels = new ArrayList<>();
+		this.storylines = new ArrayList<>();
 		this.p = p;
 		this.r = r;
 		this.dc = dc;
-		setLevels();
+		setStorylines();
 	}
 	public void start(String level) {
 		unlockAll();
-		for(Level l: this.levels) {
-			if(l.getName().equals(level)) {
-				if(!l.isLocked()) {
-					l.start();
-					cycleLevels();
+		for(Storyline s: this.storylines) {
+			if(s.getName().equals(level)) {
+				if(!s.isLocked()) {
+					s.start();
+					cycleStorylines();
 				}else {
 					System.out.println("Level is Locked");
 				}
 			}
 		}
-		System.out.println("--Campaign Closed--");
 	}
 	private void unlockAll() {
-		for(Level l: this.levels) {
-			l.setLocked(false);
+		for(Storyline s: this.storylines) {
+			s.setLocked(false);
 		}
 	}
-	private void cycleLevels() {
-		for(Level l: this.levels) {
-			l.setLocked(false);
-			if(l.isCompleted()) {
+	private void cycleStorylines() {
+		for(Storyline s: this.storylines) {
+			s.setLocked(false);
+			if(s.isCompleted()) {
 				continue;
 			}else {
 				break;
 			}
 		}
 	}
+	public void setStorylines() {
+		this.storylines.add(new Earth(p, r, dc));
+	}
+	/*
 	private void setLevels() {
 		//setting The Forest levels
 		this.levels.add(new Forest1(p, r, dc));
@@ -72,20 +77,21 @@ public class Campaign {
 		//setting Mistral levels
 		this.levels.add(new Mistral1(p, r, dc));
 	}
-	public void listLevels() {
-		for(Level l: this.levels) {
-			System.out.println(l);
+	*/
+	public void listStorylines() {
+		for(Storyline s: this.storylines) {
+			System.out.println(s);
 		}
 	}
-	private Level getLevelByName(String name) {
-		for(Level l: this.levels) {
-			if(l.getName().equals(name)) {
-				return l;
+	private Storyline getStorylineByName(String name) {
+		for(Storyline s: this.storylines) {
+			if(s.getName().equals(name)) {
+				return s;
 			}
 		}
 		return null;
 	}
-	public boolean isLevelCompleted(String level) {
-		return getLevelByName(level).isCompleted();
+	public boolean isStorylineCompleted(String level) {
+		return getStorylineByName(level).isCompleted();
 	}
 }

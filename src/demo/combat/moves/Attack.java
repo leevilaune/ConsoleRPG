@@ -35,10 +35,10 @@ public class Attack implements Move{
 	public int getHeal() {
 		return this.healPower;
 	}
-
+	
 	@Override
 	public void setHeal() {
-		
+		//	
 	}
 
 	@Override

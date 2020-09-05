@@ -1,40 +1,42 @@
-package demo.campaign.levels.beach;
+package demo.campaign.levels.ruins;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import demo.combat.bots.water.Siren;
-import demo.combat.bots.water.WaterSpirit;
+import demo.combat.bots.earth.*;
 import demo.domain.Bot;
 import demo.domain.DropController;
 import demo.domain.Level;
 import demo.domain.Player;
 import demo.domain.chests.BasicChest;
-import demo.domain.items.aquaticset.AquaticBoots;
+import demo.domain.items.grassset.GrassBlade;
 
-public class Beach2 extends Level{
+public class Ruins1 extends Level{
+
+private DropController dropCtrl;
 	
-	private DropController dropCtrl;
-	
-	public Beach2(Player p, Scanner r, DropController dc) {
-		super(p, r, setBots(), "The Beach - 2");
+	public Ruins1(Player p, Scanner r, DropController dc) {
+		super(p, r, setBots(), "Ruins - 1");
 		this.dropCtrl = dc;
 	}
 	private static List<Bot> setBots(){
 		List<Bot> bots = new ArrayList<>();
-		bots.add(new WaterSpirit(1, 7));
-		bots.add(new Siren(2, 7));
-		bots.add(new WaterSpirit(3,7));
+		bots.add(new Ogre(1, 6));
+		bots.add(new DarkElf(2,6));
+		bots.add(new DarkElf(3,6));
 		return bots;
 	}
 	@Override
 	public void start() {
+		if(!super.isCompleted()) {
+			System.out.println("");
+		}
 		super.setEnemies(setBots());
 		super.start();
 		if(super.isCompleted()) {
 			dropCtrl.addChest(new BasicChest());
-			dropCtrl.addGear(new AquaticBoots());
+			dropCtrl.addGear(new GrassBlade());
 		}
 	}
 }
