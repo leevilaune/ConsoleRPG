@@ -9,6 +9,7 @@ import demo.domain.Inventory;
 import demo.domain.ItemIndex;
 import demo.domain.chests.BasicChest;
 import demo.domain.enums.Rarity;
+import demo.domain.items.starterset.*;
 
 public class InventoryMenu {
 	
@@ -117,6 +118,12 @@ public class InventoryMenu {
 		for(Gear g: this.inv.getInv()) {
 			toBeRemoved.add(g);
 		}
+		equip.setWeapon(new AdventurerSword());
+		equip.setHelmet(new BasicHelmet());
+		equip.setChestplate(new BasicChestplate());
+		equip.setPants(new BasicPants());
+		equip.setBoots(new BasicBoots());
+		
 		this.inv.getInv().removeAll(toBeRemoved);
 	}
 	private void printCommandList() {

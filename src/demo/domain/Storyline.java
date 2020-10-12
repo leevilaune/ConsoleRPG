@@ -20,12 +20,16 @@ public class Storyline {
 		this.p = p;
 		this.r = r;
 		
+		this.isLocked = true;
+		this.isCompleted = false;
+		
 		this.locations = new ArrayList<>();
 		
 	}
 	public void start() {
 		printCommands();
 		while(true) {
+			cycleLocations();
 			System.out.print("> ");
 			String command = r.nextLine();
 			if(command.equals("close")) {
@@ -36,6 +40,7 @@ public class Storyline {
 				listLocations();
 			}
 		}
+		System.out.println("--Storyline Closed--");
 	}
 	
 	public void printCommands() {
@@ -51,12 +56,28 @@ public class Storyline {
 		if(parts.length == 2) {
 			for(Location l: this.locations) {
 				if(l.getName().equals(parts[1])) {
-					l.start();
+					if(!l.isLocked()) {
+						l.start();
+					}else {
+						System.out.println("Location is Locked");
+					}
 				}
 			}
 		}
 	}
-	
+	public void cycleLocations() {
+		for(Location l: this.locations) {
+			l.setLocked(false);
+			if(l.isCompleted()) {
+				continue;
+			}else {
+				break;
+			}
+		}
+		if(this.locations.get(this.locations.size()-1).isCompleted()) {
+			this.isCompleted = true;
+		}
+	}
 	public void listLocations() {
 		for(Location l: this.locations) {
 			System.out.println(l);

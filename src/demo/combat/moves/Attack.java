@@ -2,15 +2,18 @@ package demo.combat.moves;
 
 import java.util.List;
 
-import demo.domain.Character;
 import demo.domain.Move;
+import demo.domain.interfaces.Character;
 
 public class Attack implements Move{
 
+	private String name;
+	
 	private int attackPower;
 	private int healPower;
 	
-	public Attack(int attackPower, int healPower) {
+	public Attack(String name, int attackPower, int healPower) {
+		this.name = name;
 		this.attackPower = attackPower;
 		this.healPower = healPower;
 	}
@@ -48,6 +51,10 @@ public class Attack implements Move{
 	@Override
 	public String getType() {
 		return "Attack";
+	}
+	
+	public String toString() {
+		return this.name;
 	}
 	
 }

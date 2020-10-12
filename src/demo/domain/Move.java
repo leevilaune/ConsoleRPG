@@ -1,5 +1,7 @@
 package demo.domain;
 
+import demo.domain.interfaces.Character;
+
 public interface Move {
 	
 	void printDescription();

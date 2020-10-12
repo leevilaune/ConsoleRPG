@@ -1,5 +1,7 @@
 package demo.domain;
 
+import demo.domain.interfaces.Character;
+
 public class Player implements Character {
 	
 	private String name;

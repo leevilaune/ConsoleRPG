@@ -86,4 +86,7 @@ public class Inventory {
 		}
 		return gear;
 	}
+	public List<Gear> getInventory(){
+		return this.inv;
+	}
 }

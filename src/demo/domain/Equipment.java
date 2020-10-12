@@ -1,5 +1,7 @@
 package demo.domain;
 
+import java.util.ArrayList;
+
 import demo.domain.items.starterset.*;
 
 public class Equipment {
@@ -56,6 +58,7 @@ public class Equipment {
 		hpBoost += this.pantsSlot.getHPBoost();
 		hpBoost += this.bootsSlot.getHPBoost();
 		
+		
 		return hpBoost;
 	}
 	public int getAttackBoost() {
@@ -66,6 +69,10 @@ public class Equipment {
 		attackBoost += this.pantsSlot.getAttackBoost();
 		attackBoost += this.bootsSlot.getAttackBoost();
 
+		if(this.fullSetEquip()) {
+			attackBoost *= 1.3;
+		}
+		
 		return attackBoost;
 	}
 	public void setWeapon(Gear g) {
@@ -153,18 +160,24 @@ public class Equipment {
 		}
 		return false;
 	}
-	/*
 	public boolean fullSetEquip() {
+		ArrayList<Gear> gear = new ArrayList<>();
+		
+		gear.add(getBoots());
+		gear.add(getChestplate());
+		gear.add(getHelmet());
+		gear.add(getPants());
+		gear.add(getWeapon());
+		
 		String setID = weaponSlot.getGear().getSetID();
-		for(Slot s: this.slots) {
-			System.out.println(s.getGear().getSetID());
-			if(!s.getGear().getSetID().equals(setID)) {
+		for(Gear g: gear) {
+			//System.out.println(g.getSetID());
+			if(!g.getSetID().equals(setID)) {
 				return false;
 			}
 		}
 		return true;
 	}
-	*/
 	public void printEquipment() {
 		System.out.println("--Equipment--");
 		System.out.println(this.weaponSlot + ", " + this.weaponSlot.getGear().getLevel());

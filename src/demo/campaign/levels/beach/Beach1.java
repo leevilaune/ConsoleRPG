@@ -18,7 +18,7 @@ public class Beach1 extends Level{
 	private DropController dropCtrl;
 	
 	public Beach1(Player p, Scanner r, DropController dc) {
-		super(p, r, setBots(), "The Beach - 1");
+		super(p, r, setBots(), "Beach - 1");
 		this.dropCtrl = dc;
 	}
 	private static List<Bot> setBots(){
@@ -32,7 +32,7 @@ public class Beach1 extends Level{
 	public void start() {
 		super.setEnemies(setBots());
 		if(!super.isCompleted()) {
-			System.out.println("\nNarrator: ");
+			System.out.println("\nSorath: ");
 			System.out.println("  Welcome to The Beaches of The Great Ocean, a place where nasty");
 			System.out.println("  sea creatures live. Like Sirens and Water Spirits.");
 			System.out.println("  You need to fight your way through The Beach.\n");

@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import demo.campaign.levels.beach.*;
-import demo.campaign.levels.forest.*;
-import demo.campaign.levels.mistral.*;
-import demo.campaign.storylines.Earth;
+import demo.campaign.storylines.*;
 import demo.domain.DropController;
-import demo.domain.Level;
 import demo.domain.Player;
 import demo.domain.Storyline;
 
@@ -57,6 +53,7 @@ public class Campaign {
 	}
 	public void setStorylines() {
 		this.storylines.add(new Earth(p, r, dc));
+		this.storylines.add(new Water(p, r, dc));
 	}
 	/*
 	private void setLevels() {

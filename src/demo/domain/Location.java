@@ -25,17 +25,22 @@ public class Location {
 	public void start() {
 		printCommands();
 		while(true) {
+			cycleLevels();
 			System.out.print("> ");
 			String command = r.nextLine();
 			if(command.equals("close")) {
 				break;
 			}else if(command.contains("start")) {
 				startLevel(command);
-				cycleLevels();
 			}else if(command.equals("list levels")) {
 				listLevels();
+			}else if(command.equals("unlock")) {
+				unlockAll();
+			}else if(command.equals("complete")) {
+				completeAll();
 			}
 		}
+		System.out.println("--Location Closed--");
 	}
 	
 	public void startLevel(String command) {
@@ -55,6 +60,16 @@ public class Location {
 	public void listLevels() {
 		for(Level l: this.levels) {
 			System.out.println(l);
+		}
+	}
+	private void unlockAll() {
+		for(Level l: this.levels) {
+			l.setLocked(false);
+		}
+	}
+	private void completeAll() {
+		for(Level l: this.levels) {
+			l.setCompleted(true);
 		}
 	}
 	private void cycleLevels() {

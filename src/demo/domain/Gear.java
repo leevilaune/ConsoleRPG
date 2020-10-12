@@ -2,8 +2,9 @@ package demo.domain;
 
 import demo.domain.enums.Element;
 import demo.domain.enums.Rarity;
+import demo.domain.interfaces.Craftable;
 
-public class Gear extends Item{
+public class Gear extends Item implements Craftable{
 	
 	private int power;
 	private int level;
@@ -135,8 +136,9 @@ public class Gear extends Item{
 	}
 	
 	public void upgrade(int times) {
-		this.level += times;
-		this.power += (10 * times);
+		for(int i = 0; i <= times; i++) {
+			upgrade();
+		}
 	}
 	public void printDetails() {
 		System.out.println("  " + this.toString() + ", " + this.level);
@@ -146,6 +148,32 @@ public class Gear extends Item{
 	}
 	public void printStats() {
 		System.out.println(this.stats);
+	}
+
+	@Override
+	public void setMaterialInventory(MaterialInventory mi) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setRequiredMaterials() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void printRecipe() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setRecipe(Recipe r) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public Recipe getRecipe() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	@Override
 	public int hashCode() {

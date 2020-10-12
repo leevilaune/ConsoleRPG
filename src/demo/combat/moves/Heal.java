@@ -1,7 +1,7 @@
 package demo.combat.moves;
 
-import demo.domain.Character;
 import demo.domain.Move;
+import demo.domain.interfaces.Character;
 
 public class Heal implements Move{
 	

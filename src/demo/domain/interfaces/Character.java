@@ -1,4 +1,4 @@
-package demo.domain;
+package demo.domain.interfaces;
 
 public interface Character {
 	

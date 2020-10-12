@@ -10,33 +10,30 @@ import demo.domain.DropController;
 import demo.domain.Level;
 import demo.domain.Player;
 import demo.domain.chests.BasicChest;
-import demo.domain.items.grassset.GrassBlade;
+import demo.domain.items.grassset.GrassBoots;
 
-public class Ruins1 extends Level{
+public class Ruins2 extends Level{
 
 	private DropController dropCtrl;
 	
-	public Ruins1(Player p, Scanner r, DropController dc) {
-		super(p, r, setBots(), "Ruins - 1");
+	public Ruins2(Player p, Scanner r, DropController dc) {
+		super(p, r, setBots(), "Ruins - 2");
 		this.dropCtrl = dc;
 	}
 	private static List<Bot> setBots(){
 		List<Bot> bots = new ArrayList<>();
-		bots.add(new Ogre(1,6));
-		bots.add(new DarkElf(2,6));
-		bots.add(new DarkElf(3,6));
+		bots.add(new DarkElf(1,7));
+		bots.add(new DarkElf(2,7));
+		bots.add(new DarkElf(3,7));
 		return bots;
 	}
 	@Override
 	public void start() {
-		if(!super.isCompleted()) {
-			System.out.println("");
-		}
 		super.setEnemies(setBots());
 		super.start();
 		if(super.isCompleted()) {
 			dropCtrl.addChest(new BasicChest());
-			dropCtrl.addGear(new GrassBlade());
+			dropCtrl.addGear(new GrassBoots());
 		}
 	}
 }

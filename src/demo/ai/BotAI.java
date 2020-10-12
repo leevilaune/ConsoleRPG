@@ -20,7 +20,7 @@ public class BotAI {
 		this.dodgeChange = dodgeChange;
 		this.attackPower = attackPower;
 		this.healPower = healPower;
-		this.attack = new Attack(this.attackPower, this.healPower);
+		this.attack = new Attack("Base Attack", this.attackPower, this.healPower);
 		this.heal = new Heal(this.attackPower, this.healPower);
 	}
 	//method defininig which move to use
@@ -47,5 +47,11 @@ public class BotAI {
 	}
 	public void setAttack(Attack atk) {
 		this.attack = atk;
+	}
+	public double getDodgeChange() {
+		return this.dodgeChange;
+	}
+	public void setDodgeChange(double d) {
+		this.dodgeChange = d;
 	}
 }

@@ -1,6 +1,7 @@
 package demo.domain;
 
 import demo.ai.BotAI;
+import demo.domain.interfaces.Character;
 
 public class Bot implements Character{
 	
@@ -45,6 +46,13 @@ public class Bot implements Character{
 		return this.level;
 	}
 	
+	public void fullDetails() {
+		this.toString();
+		System.out.println("  Dodge Change: " + this.ai.getDodgeChange());
+						// "  Health:      " + this.hp;
+		System.out.println("  Attack:       " + this.ai.getAttack());
+	}
+
 	@Override
 	public void attack(Character c) {
 		c.setHP(c.getHP() - attackPower);
@@ -60,17 +68,18 @@ public class Bot implements Character{
 	}
 	@Override 
 	public void setName(String name) {
-		
+		this.name = name;
 	}
+	@Override
 	public String getName() {
 		return this.name;
 	}
 	@Override
 	public String toString() {
 		return this.name + " - " + this.level + 
-				"\n  AttackPower: " + this.attackPower + 
-				"\n  HealPower:   " + this.healPower + 
-				"\n  Health:      " + this.hp;
+				"\n  Attack Power: " + this.attackPower + 
+				"\n  Heal Power:   " + this.healPower + 
+				"\n  Health:       " + this.hp;
 	}
 
 	

@@ -18,7 +18,7 @@ public class Beach3 extends Level {
 private DropController dropCtrl;
 	
 	public Beach3(Player p, Scanner r, DropController dc) {
-		super(p, r, setBots(), "The Beach - 3");
+		super(p, r, setBots(), "Beach - 3");
 		this.dropCtrl = dc;
 	}
 	private static List<Bot> setBots(){

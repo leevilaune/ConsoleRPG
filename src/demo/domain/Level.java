@@ -29,12 +29,18 @@ public class Level {
 		player.updateStats();
 		player.resetHP();
 		this.enemies = bots;
+		if(!this.isCompleted) {
+			printStoryBefore();
+		}
 		this.printCommands();
 		while(true) {
 			if(this.enemies.size() == 0) {
 				System.out.println("Level Cleared!");
 				this.enemies.addAll(bots);
 				this.player.resetHP();
+				if(!this.isCompleted) {
+					printStoryAfter();
+				}
 				this.isCompleted = true;
 				break;
 			}
@@ -60,6 +66,12 @@ public class Level {
 		
 	}
 	
+	public void printStoryBefore() {
+		
+	}
+	public void printStoryAfter() {
+		
+	}
 	private void printCommands() {
 		System.out.println("--Combat Commands--");
 		System.out.println("  close         - closes combat view");
@@ -141,6 +153,8 @@ public class Level {
 	
 	@Override
 	public String toString() {
-		return this.name + "\n  Locked:    " + this.isLocked + "\n  Completed: " + this.isCompleted;
+		return this.name + 
+				"\n  Locked:    " + this.isLocked + 
+				"\n  Completed: " + this.isCompleted;
 	}
 }

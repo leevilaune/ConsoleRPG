@@ -5,12 +5,14 @@ public class DropController {
 	private Player player;
 	private Inventory inv;
 	private ChestInventory chestInv;
+	private MaterialInventory mInv;
 	private Equipment equip;
 	
-	public DropController(Player p, Inventory inv, ChestInventory chestInv, Equipment e) {
+	public DropController(Player p, Inventory inv, ChestInventory cInv, MaterialInventory mInv, Equipment e) {
 		this.player = p;
 		this.inv = inv;
-		this.chestInv = chestInv;
+		this.chestInv = cInv;
+		this.mInv = mInv;
 		this.equip = e;
 	}
 	public void awardCoins(int coins) {
@@ -33,5 +35,8 @@ public class DropController {
 			System.out.println("You got " + g);
 		}
 	}
-	
+	public void addMaterial(Material m, int a) {
+		//this.mInv.addMaterial(m, a);
+		//System.out.println("You got " + m);
+	}
 }

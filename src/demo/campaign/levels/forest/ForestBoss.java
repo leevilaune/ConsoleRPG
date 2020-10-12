@@ -10,7 +10,6 @@ import demo.domain.DropController;
 import demo.domain.Level;
 import demo.domain.Player;
 import demo.domain.chests.EarthChest;
-import demo.domain.items.flameset.FlameSword;
 import demo.domain.items.grassset.GrassChestplate;
 import demo.domain.items.leafset.LeafDaggers;
 
@@ -28,19 +27,27 @@ public class ForestBoss extends Level{
 		return bots;
 	}
 	@Override
+	public void printStoryBefore() {
+		
+	}
+	@Override
+	public void printStoryAfter() {
+		System.out.println("\nSorath:");
+		System.out.println("  That looked easy, with you we might be able to win this war.");
+		System.out.println("  Anyway this is Sabrael, commander of The Angelic Forces, she will be");
+		System.out.println("  guiding you through the game.");
+		
+		System.out.println("\nSabrael:");
+		System.out.println("  Hi I am Sabrael.");
+		System.out.println("  Here take this. It is a Legendary Leaf Daggers, it will be useful when fighting Earth ");
+		System.out.println("  monsters like those goblins. You can equip it in Inventory Menu by ");
+		System.out.println("  typing  “equip Leaf Daggers”.\n");
+	}
+	@Override
 	public void start() {
 		super.setEnemies(setBots());
 		super.start();
 		if(super.isCompleted()) {
-			System.out.println("\nNarrator:");
-			System.out.println("  That looked easy, with you we might be able to win this war.");
-			System.out.println("  Anyway this is Sabrael, commander of The Angelic Forces, she will be");
-			System.out.println("  guiding you through the game.");
-			System.out.println("\nSabrael:");
-			System.out.println("  Hi I am Sabrael.");
-			System.out.println("  Here take this. It is a Legendary Leaf Daggers, it will be useful when fighting Earth ");
-			System.out.println("  monsters like those goblins. You can equip it in Inventory Menu by ");
-			System.out.println("  typing  “equip Leaf Daggers”.\n");
 			dropCtrl.addChest(new EarthChest());
 			dropCtrl.addGear(new GrassChestplate());
 			dropCtrl.addGear(new LeafDaggers());

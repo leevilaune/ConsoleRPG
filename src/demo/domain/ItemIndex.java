@@ -5,6 +5,7 @@ import demo.domain.items.starterset.*;
 import demo.domain.items.grassset.*;
 import demo.domain.items.aquaticset.*;
 import demo.domain.items.breezeset.BreezeSword;
+import demo.domain.items.campaign.GoblinDagger;
 import demo.domain.items.emberset.*;
 import demo.domain.items.leafset.*;
 import demo.domain.items.oceanset.*;
@@ -38,6 +39,8 @@ public class ItemIndex {
 		this.commons.add(new BasicChestplate());
 		this.commons.add(new BasicPants());
 		this.commons.add(new BasicBoots());
+		//adding campaing commons
+		this.commons.add(new GoblinDagger());
 	}
 	private void setRares() {
 		//setting Breeze Set
