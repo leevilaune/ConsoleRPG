@@ -2,92 +2,46 @@ package demo.combat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import demo.combat.bots.TargetDummy;
 import demo.combat.bots.earth.Goblin;
+import demo.crafting.materials.GoblinTooth;
 import demo.domain.Bot;
+import demo.domain.DropController;
+import demo.domain.Level;
 import demo.domain.Player;
+import demo.domain.chests.BasicChest;
+import demo.domain.items.campaign.GoblinDagger;
+import demo.domain.items.grassset.GrassBlade;
 
-public class CombatTestScene {
+public class CombatTestScene extends Level {
 	
-	private TargetDummy dummy;
-	private List<Bot> bots;
-	private Player player;
-	private Scanner scanner;
+	private Random random;
+	private DropController dropCtrl;
+	private Scanner r;
+	private Player p;
 	
-	public CombatTestScene(Player p, Scanner r) {
-		this.bots = new ArrayList<>();
-		this.player = p;
-		this.scanner = r;
-		this.dummy = new TargetDummy();
-		this.setBots();
+	public CombatTestScene(Player p, Scanner r, DropController dc) {
+		super(p, r, setBots(p.getLevel()), "Test");
+		super.setLocked(false);
+		this.random = new Random();
+		this.dropCtrl = dc;
 		
+		this.r = r;
+		this.p = p;
 	}
-	private void setBots() {
-		for(int i = 1; i <= 3; i++) {
-			this.bots.add(new Goblin(1,1));
-		}
+	private static List<Bot> setBots(int level){
+		List<Bot> bots = new ArrayList<>();
+		bots.add(new TargetDummy());
+		return bots;
 	}
+
+	@Override
 	public void start() {
-		this.printCommands();
-		while(true) {
-			System.out.println(player);
-			System.out.print("> ");
-			String command = scanner.nextLine();
-			if(command.equals("close")) {
-				break;
-			}else if(command.contains("attack")) {
-				attack(command);
-				cycleBots();
-			}else if(command.equals("reset")) {
-				this.setBots();
-			}else if(command.equals("list bots")) {
-				this.listBots();
-			}
-		}
-	}
-	private void printCommands() {
-		System.out.println("--Combat Commands--");
-		System.out.println("  close         - closes combat view");
-		System.out.println("  list bots     - list all bots");
-		System.out.println("  attack [bot] 	- attacks selected bot");
-		System.out.println("  heal          - heals player");
-		System.out.println("  reset         - resets target dummy");
-	}
-	private void attack(String command) {
-		String[] parts = command.split(" ", 2);
-		if(parts.length == 2) {
-			Bot b = (getByName(parts[1]));
-			if(b != null) {
-				player.attack(b);
-			}
-		}
-	}
-	private void listBots() {
-		for(Bot b: this.bots) {
-			System.out.println(b);
-		}
-	}
-	private void cycleBots() {
-		ArrayList<Bot> dead = new ArrayList<>();
-		for(Bot b: this.bots) {
-			if(b.getHP() < 0) {
-				System.out.println(b.getName() + " Killed");
-				dead.add(b);
-			}else {
-				b.makeMove(this.player);
-				System.out.println(b);
-			}
-		}
-		this.bots.removeAll(dead);
-	}
-	private Bot getByName(String name) {
-		for(Bot b: this.bots) {
-			if(b.getName().equals(name)) {
-				return b;
-			}
-		}
-		return null;
+		super.setEnemies(setBots(p.getLevel()));
+		super.start();
 	}
 }
+

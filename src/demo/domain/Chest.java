@@ -50,6 +50,9 @@ public class Chest {
 		return null;
 		
 	}
+	public String getName() {
+		return this.name;
+	}
 	public String toString() {
 		return this.name;
 	}

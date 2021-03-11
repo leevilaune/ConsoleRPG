@@ -94,6 +94,9 @@ public class Location {
 	public void setLevels(List<Level> levels) {
 		this.levels = levels;
 	}
+	public List<Level> getLevels(){
+		return this.levels;
+	}
 	public boolean isLocked() {
 		return this.isLocked;
 	}

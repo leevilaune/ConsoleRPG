@@ -52,14 +52,31 @@ public class Level {
 			}else if(command.equals("list bots")) {
 				listBots();
 			}else if(command.equals("attack")){
+				System.out.println("attacked " + this.player.getAttackPower());
 				this.attack();
+				player.getPlayerClass().getUltimate().waitATurn();
 				cycleBots();
 			}else if(command.contains("attack")) {
 				this.attack(command);
+				player.getPlayerClass().getUltimate().waitATurn();
 				cycleBots();
 			}else if(command.equals("heal")) {
 				this.player.heal();
+				player.getPlayerClass().getUltimate().waitATurn();
 				cycleBots();
+			}else if(command.equals("block")) {
+				continue;
+			}else if(command.equals("ultim")) {
+				if(player.getPlayerClass().getUltimate().getTurnsUntilUse() == 0) {
+					this.ultimate();
+					cycleBots();
+				}else {
+					
+				}
+			}else if(command.contains("ultim")) {
+				if(player.getPlayerClass().getUltimate().getTurnsUntilUse() == 0) {
+					this.ultimate(command);
+				}
 			}
 			System.out.println(this.player);
 		}
@@ -98,6 +115,26 @@ public class Level {
 			System.out.println("Dodged");
 		}
 	}
+	private void block() {
+		
+	}
+	private void ultimate(String command) {
+		String[] parts = command.split(" ", 2);
+		if(parts.length == 2) {
+			Bot b = (getByName(parts[1]));
+			if(b != null) {
+				player.ultimate(b);
+			}
+		}
+	}
+	private void ultimate() {
+		Bot b = getFirstBot();
+		if(!b.didDodge()) {
+			player.ultimate(b);
+		}else {
+			System.out.println("Dodged");
+		}
+	}
 	private void listBots() {
 		for(Bot b: this.enemies) {
 			System.out.println(b);
@@ -111,6 +148,7 @@ public class Level {
 				System.out.println(b.getName() + " Killed");
 				dead.add(b);
 			}else {
+				
 				b.makeMove(this.player);
 				System.out.println(b);
 			}
@@ -150,7 +188,9 @@ public class Level {
 	public String getName() {
 		return this.name;
 	}
-	
+	public String getSave() {
+		return this.name + "," + this.isLocked + "," + this.isCompleted + "\n";
+	}
 	@Override
 	public String toString() {
 		return this.name + 

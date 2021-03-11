@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import demo.campaign.storylines.*;
 import demo.domain.DropController;
+import demo.domain.Level;
+import demo.domain.Location;
 import demo.domain.Player;
 import demo.domain.Storyline;
 
@@ -55,26 +57,19 @@ public class Campaign {
 		this.storylines.add(new Earth(p, r, dc));
 		this.storylines.add(new Water(p, r, dc));
 	}
-	/*
-	private void setLevels() {
-		//setting The Forest levels
-		this.levels.add(new Forest1(p, r, dc));
-		this.levels.add(new Forest2(p, r, dc));
-		this.levels.add(new Forest3(p, r, dc));
-		this.levels.add(new Forest4(p, r, dc));
-		this.levels.add(new ForestBoss(p, r, dc));
-		
-		//setting The Beach levels
-		this.levels.add(new Beach1(p, r, dc));
-		this.levels.add(new Beach2(p, r, dc));
-		this.levels.add(new Beach3(p, r, dc));
-		this.levels.add(new Beach4(p, r, dc));
-		this.levels.add(new BeachBoss(p, r, dc));
-		
-		//setting Mistral levels
-		this.levels.add(new Mistral1(p, r, dc));
+
+	public List<Level> getSave() {
+		List<Level> lvls = new ArrayList<>();
+		for(Storyline s: this.storylines) {
+			for(Location l: s.getLocations()) {
+				for(Level lvl: l.getLevels()) {
+					lvls.add(lvl);
+					//System.out.println(lvl.getSave());
+				}
+			}
+		}
+		return lvls;
 	}
-	*/
 	public void listStorylines() {
 		for(Storyline s: this.storylines) {
 			System.out.println(s);

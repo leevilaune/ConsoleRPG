@@ -25,12 +25,13 @@ public class Ruins extends Location{
 		
 		super.setLevels(setLevels());
 	}
-
 	public List<Level> setLevels(){
 		List<Level> levels = new ArrayList<>();
 		levels.add(new Ruins1(p, r, dc));
 		levels.add(new Ruins2(p, r, dc));
-		
+		levels.add(new Ruins3(p, r, dc));
+		levels.add(new Ruins4(p, r, dc));
+		levels.add(new RuinsBoss(p, r, dc));
 		return levels;
 	}
 }

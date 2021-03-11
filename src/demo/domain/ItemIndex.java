@@ -4,8 +4,9 @@ import java.util.*;
 import demo.domain.items.starterset.*;
 import demo.domain.items.grassset.*;
 import demo.domain.items.aquaticset.*;
-import demo.domain.items.breezeset.BreezeSword;
-import demo.domain.items.campaign.GoblinDagger;
+import demo.domain.items.breezeset.*;
+import demo.domain.items.campaign.*;
+import demo.domain.items.crimsonset.*;
 import demo.domain.items.emberset.*;
 import demo.domain.items.leafset.*;
 import demo.domain.items.oceanset.*;
@@ -16,14 +17,17 @@ public class ItemIndex {
 	private List<Gear> commons;
 	private List<Gear> rares;
 	private List<Gear> legendaries;
+	private List<Gear> mythicals;
 	
 	public ItemIndex() {
 		this.commons = new ArrayList<>();
 		this.rares = new ArrayList<>();
 		this.legendaries = new ArrayList<>();
+		this.mythicals = new ArrayList<>();
 		this.setCommons();
 		this.setRares();
 		this.setLegendaries();
+		this.setMythicals();
 	}
 	public void setFound(String name) {
 		if(getGear(name) == null) {
@@ -84,6 +88,13 @@ public class ItemIndex {
 		this.legendaries.add(new FlamePants());
 		this.legendaries.add(new FlameBoots());
 	}
+	private void setMythicals() {
+		this.mythicals.add(new CrimsonBow());
+		this.mythicals.add(new CrimsonHood());
+		this.mythicals.add(new CrimsonTunic());
+		this.mythicals.add(new CrimsonPants());
+		this.mythicals.add(new CrimsonBoots());
+	}
 	public void listItems() {
 		System.out.println("--Commons------");
 		for(Gear g: this.commons) {
@@ -95,6 +106,10 @@ public class ItemIndex {
 		}
 		System.out.println("\n--Legendaries--");
 		for(Gear g: this.legendaries) {
+			System.out.println("  " + g + ", " + g.isFound());
+		}
+		System.out.println("\n--Mythicals--");
+		for(Gear g: this.mythicals) {
 			System.out.println("  " + g + ", " + g.isFound());
 		}
 	}
@@ -114,6 +129,11 @@ public class ItemIndex {
 			}
 		}
 		for(Gear g: this.legendaries) {
+			if(g.getName().equals(name)) {
+				return g;
+			}
+		}
+		for(Gear g: this.mythicals) {
 			if(g.getName().equals(name)) {
 				return g;
 			}

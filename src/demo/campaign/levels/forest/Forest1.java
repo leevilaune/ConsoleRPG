@@ -23,7 +23,7 @@ public class Forest1 extends Level {
 	private Player p;
 	
 	public Forest1(Player p, Scanner r, DropController dc) {
-		super(p, r, setBots(), "Forest - 1");
+		super(p, r, setBots(p.getLevel()), "Forest - 1");
 		super.setLocked(false);
 		this.random = new Random();
 		this.dropCtrl = dc;
@@ -31,7 +31,7 @@ public class Forest1 extends Level {
 		this.r = r;
 		this.p = p;
 	}
-	private static List<Bot> setBots(){
+	private static List<Bot> setBots(int level){
 		List<Bot> bots = new ArrayList<>();
 		bots.add(new Goblin(1,1));
 		bots.add(new Goblin(2,1));
@@ -48,6 +48,7 @@ public class Forest1 extends Level {
 			if(random.nextDouble()< 0.9) {
 				dropCtrl.addMaterial(new GoblinTooth(), random.nextInt(5));
 			}
+			dropCtrl.addXP(10);
 		}
 	}
 	@Override
@@ -72,7 +73,7 @@ public class Forest1 extends Level {
 
 	@Override
 	public void start() {
-		super.setEnemies(setBots());
+		super.setEnemies(setBots(p.getLevel()));
 		super.start();
 		this.loot();
 	}

@@ -16,9 +16,9 @@ public class Bot implements Character{
 	public Bot(String name, int fullHP, int attackPower,int healPower, int level) {
 		this.level = level;
 		this.name = name;
-		this.attackPower = (attackPower * level) / 2;
-		this.healPower = (healPower * level) / 4;
-		this.fullHP = (fullHP * level) / 2;
+		this.attackPower = (attackPower * level);
+		this.healPower = (healPower * level);
+		this.fullHP = (fullHP * level);
 		this.hp = this.fullHP;
 		this.ai = new BotAI(this.attackPower, this.healPower, 0.1);
 	}

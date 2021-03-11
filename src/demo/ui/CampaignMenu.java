@@ -12,9 +12,9 @@ public class CampaignMenu {
 	private Campaign campaign;
 	private Scanner scanner;
 
-	public CampaignMenu(Scanner r, Player p, DropController dc) {
+	public CampaignMenu(Scanner r, Player p, DropController dc, Campaign c) {
 		this.scanner = r;
-		this.campaign = new Campaign(p, r, dc);
+		this.campaign = c;
 	}
 	public void start() {
 		printCommands();

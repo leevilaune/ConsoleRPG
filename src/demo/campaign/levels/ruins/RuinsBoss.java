@@ -10,7 +10,9 @@ import demo.domain.DropController;
 import demo.domain.Level;
 import demo.domain.Player;
 import demo.domain.chests.BasicChest;
+import demo.domain.chests.EarthChest;
 import demo.domain.items.grassset.GrassBlade;
+import demo.domain.items.leafset.LeafChestplate;
 
 public class RuinsBoss extends Level{
 	
@@ -30,8 +32,9 @@ public class RuinsBoss extends Level{
 		super.setEnemies(setBots());
 		super.start();
 		if(super.isCompleted()) {
-			dropCtrl.addChest(new BasicChest());
+			dropCtrl.addChest(new EarthChest());
 			dropCtrl.addGear(new GrassBlade());
+			dropCtrl.addGear(new LeafChestplate());
 		}
 	}
 }

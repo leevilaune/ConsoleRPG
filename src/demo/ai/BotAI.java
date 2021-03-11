@@ -1,10 +1,10 @@
 package demo.ai;
 
+import demo.combat.moves.Attack;
+import demo.combat.moves.Heal;
 import demo.domain.Move;
 
 import java.util.Random;
-
-import demo.combat.moves.*;
 
 public class BotAI {
 	
@@ -21,7 +21,7 @@ public class BotAI {
 		this.attackPower = attackPower;
 		this.healPower = healPower;
 		this.attack = new Attack("Base Attack", this.attackPower, this.healPower);
-		this.heal = new Heal(this.attackPower, this.healPower);
+		this.heal = new Heal("Base Heal",this.attackPower, this.healPower, 2);
 	}
 	//method defininig which move to use
 	public Move defineMove(int fullHP, int hp) {

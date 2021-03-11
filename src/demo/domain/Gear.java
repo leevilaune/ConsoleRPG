@@ -128,6 +128,14 @@ public class Gear extends Item implements Craftable{
 			this.stats.setAttack(this.attackBoost);
 			this.stats.setHP(this.hpBoost);
 			this.isUpgraded = true;
+		}else if(this.rarity == Rarity.MYTHICAL && this.level < 120) {
+			this.level++;
+			this.power += this.basePower;
+			this.attackBoost += this.baseAttack;
+			this.hpBoost += this.baseHP;
+			this.stats.setAttack(this.attackBoost);
+			this.stats.setHP(this.hpBoost);
+			this.isUpgraded = true;
 		}
 		else {
 			this.isMaxLevel = true;

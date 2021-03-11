@@ -24,6 +24,7 @@ public class DropController {
 		System.out.println("You got " + c);
 	}
 	public void addGear(Gear g) {
+		//System.out.println(g);
 		if(this.equip.checkIfEquipped(g.getName())) {
 			this.equip.upgrade(g.getID());
 		}else if(inv.checkIfInInventory(g)) {
@@ -38,5 +39,8 @@ public class DropController {
 	public void addMaterial(Material m, int a) {
 		//this.mInv.addMaterial(m, a);
 		//System.out.println("You got " + m);
+	}
+	public void addXP(int xp) {
+		this.player.addXP(xp);
 	}
 }

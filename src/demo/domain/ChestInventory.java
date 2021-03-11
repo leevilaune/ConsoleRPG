@@ -60,4 +60,7 @@ public class ChestInventory {
 		}
 		return false;
 	}
+	public List<Chest> getChests() {
+		return this.chests;
+	}
 }

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+import demo.campaign.Campaign;
 import demo.combat.CombatTestScene;
 import demo.crafting.Crafting;
 import demo.domain.ChestInventory;
@@ -14,6 +15,7 @@ import demo.domain.Inventory;
 import demo.domain.ItemIndex;
 import demo.domain.MaterialInventory;
 import demo.domain.Player;
+import demo.raid.Raid;
 import demo.utility.SaveReader;
 import demo.utility.Saver;
 
@@ -21,8 +23,12 @@ public class Menu {
 	
 	private File invSave;
 	private File equipSave;
+	private File campSave;
+	private File chestSave;
+	private File playerSave;
 	
 	private Scanner r;
+	private Campaign camp;
 	private ItemIndex index;
 	private IndexMenu indMenu;
 	private Inventory inv;
@@ -33,10 +39,13 @@ public class Menu {
 	private Player player;
 	private CombatTestScene combat;
 	private DropController dc;
+	private Raid raid;
 	private CampaignMenu campMenu;
 	private MaterialInventory mInv;
 	private Crafting craft;
 	private CraftMenu craftMenu;
+	private RaidMenu raidMenu;
+	private PlayerMenu playerMenu;
 	
 	private SaveReader saveReader;
 	private Saver saver;
@@ -45,6 +54,9 @@ public class Menu {
 		
 		this.invSave = new File("inventory.csv");
 		this.equipSave = new File("equipment.csv");
+		this.campSave = new File("campaign.csv");
+		this.chestSave = new File("chests.csv");
+		this.playerSave = new File("player.csv");
 		
 		this.r = new Scanner(System.in);
 		this.index = new ItemIndex();
@@ -58,15 +70,23 @@ public class Menu {
 		this.mInv = new MaterialInventory();
 		this.craft = new Crafting(inv, equip, mInv);
 		this.dc = new DropController(player, inv, chestInv, mInv, equip);
-		this.campMenu = new CampaignMenu(r, player, dc);
+		this.camp = new Campaign(player, r, dc);
+		this.raid = new Raid(player, r, dc);
+		this.campMenu = new CampaignMenu(r, player, dc, camp);
 		this.craftMenu = new CraftMenu(r, craft, mInv);
+		this.raidMenu = new RaidMenu(raid, r);
+		this.playerMenu = new PlayerMenu(player, r);
 		
-		this.saveReader = new SaveReader(invSave,equipSave,inv,equip,index);
+		this.saveReader = new SaveReader(invSave,equipSave,campSave,chestSave,playerSave,
+				inv,equip,index,camp,chestInv,player);
 		saveReader.readSaves();
 	}
 	public void start() {
+		this.saver = new Saver(invSave,equipSave,campSave,chestSave,playerSave,
+				inv,equip,camp,chestInv,player);
 		printCommandList();
 		while(true) {
+			saver.save();
 			System.out.print("> ");
 			String command = r.nextLine();
 			if(command.equals("close")) {
@@ -80,20 +100,28 @@ public class Menu {
 			}else if(command.equals("chest")) {
 				chestMenu.start();
 			}else if(command.equals("combat")) {
-				this.combat = new CombatTestScene(player, r);
+				this.combat = new CombatTestScene(player, r,dc);
 				combat.start();
 			}else if(command.equals("campaign")) {
 				campMenu.start();
 			}else if(command.equals("craft")) {
-	//			this.craftMenu.start();
+				this.craftMenu.start();
+			}else if(command.equals("raid")) {
+				this.raidMenu.start();
+			}else if(command.equals("clr")) {
+				clearSaves();
+			}else if(command.equals("player")) {
+				playerMenu.start();
 			}
 			else {
 				System.out.println("Invalid command");
 			}
+			
 		}
-		this.saver = new Saver(invSave,equipSave, inv,equip);
-		saver.save();
 		System.out.println("--Closed--");
+	}
+	private void clearSaves() {
+		System.out.println("Saves cleared please restart your game");
 	}
 	private void printCommandList() {
 		System.out.println("--Main Menu Commands--");
@@ -106,4 +134,5 @@ public class Menu {
 		System.out.println("  campaign - opens campaign menu");
 	//	System.out.println("  craft    - opens crafting menu");
 	}
+	
 }

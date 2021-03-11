@@ -48,6 +48,10 @@ public class Equipment {
 		totPower += this.pantsSlot.getPower();
 		totPower += this.bootsSlot.getPower();
 
+		if(this.fullSetEquip()) {
+			totPower *= 1.3;
+		}
+		
 		return totPower;
 	}
 	public int getHPBoost() {
@@ -58,6 +62,9 @@ public class Equipment {
 		hpBoost += this.pantsSlot.getHPBoost();
 		hpBoost += this.bootsSlot.getHPBoost();
 		
+		if(this.fullSetEquip()) {
+			hpBoost *= 1.3;
+		}
 		
 		return hpBoost;
 	}
